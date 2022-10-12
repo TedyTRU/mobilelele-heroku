@@ -35,7 +35,7 @@ public class BrandService {
                 .getModels()
                 .stream()
                 .map(this::mapModel)
-                .toList();
+                .collect(Collectors.toList());
 
         BrandDto result = new BrandDto()
                 .setModels(models)

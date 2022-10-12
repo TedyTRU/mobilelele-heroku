@@ -5,8 +5,7 @@ plugins {
 }
 
 group = 'bg.softuni'
-version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '17'
+//sourceCompatibility = '17'
 
 repositories {
     mavenCentral()
@@ -34,6 +33,15 @@ dependencies {
     testRuntimeOnly 'org.hsqldb:hsqldb'
 }
 
+tasks.withType(JavaCompile) {
+    options.compilerArgs += "--enable-preview"
+}
+
 tasks.named('test') {
     useJUnitPlatform()
+    jvmArgs("--enable-preview")
+}
+
+tasks.withType(JavaExec) {
+    jvmArgs("--enable-preview")
 }

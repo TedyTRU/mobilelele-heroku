@@ -10,6 +10,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
+import java.util.stream.Collectors;
+
 public class MobileleUserDetailsService implements UserDetailsService {
 
     private final UserRepository userRepository;
@@ -35,7 +37,7 @@ public class MobileleUserDetailsService implements UserDetailsService {
                 user.getEmail(),
                 user.getFirstName(),
                 user.getLastName(),
-                user.getRole().stream().map(this::map).toList()
+                user.getRole().stream().map(this::map).collect(Collectors.toList())
         );
 
     }

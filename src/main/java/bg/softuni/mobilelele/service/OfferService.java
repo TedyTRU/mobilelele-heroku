@@ -23,6 +23,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class OfferService {
@@ -161,7 +162,7 @@ public class OfferService {
         return offerRepository.findAll(new OfferSpecification(searchOfferDto))
                 .stream()
                 .map(offerMapper::offerToOfferDto)
-                .toList();
+                .collect(Collectors.toList());
     }
 
     public Optional<OfferDetailDto> getOfferDetails(Long id) {

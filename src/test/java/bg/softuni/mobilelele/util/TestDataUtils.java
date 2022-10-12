@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 public class TestDataUtils {
@@ -66,7 +67,7 @@ public class TestDataUtils {
                         .findAll()
                         .stream()
                         .filter(r -> r.getRole() != RoleEnum.ADMIN)
-                        .toList());
+                        .collect(Collectors.toList()));
 
         return userRepository.save(user);
     }

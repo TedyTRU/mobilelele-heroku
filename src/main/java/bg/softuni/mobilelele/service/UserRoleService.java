@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class UserRoleService {
@@ -25,7 +26,7 @@ public class UserRoleService {
 
         List<UserRole> userRoles = Arrays.stream(RoleEnum.values())
                 .map(userRole -> new UserRole().setRole(userRole))
-                .toList();
+                .collect(Collectors.toList());
 
         userRoleRepository.saveAll(userRoles);
     }
