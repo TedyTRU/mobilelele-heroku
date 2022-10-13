@@ -1,16 +1,14 @@
 spring:
   datasource:
-    driverClassName: com.mysql.cj.jdbc.Driver
-    url: "jdbc:mysql://localhost:3306/mobilelele?allowPublicKeyRetrieval=true&useSSL=false&createDatabaseIfNotExist=true&serverTimezone=UTC"
-    username: root
-    password: 123456
+    driverClassName: org.postgresql.Driver
+    url: ${JDBC_DATABASE_URL:}
+    username: ${JDBC_DATABASE_USERNAME:}
+    password: ${JDBC_DATABASE_PASSWORD:}
+
   servlet:
     multipart:
       max-file-size: 1MB
       max-request-size: 5MB
-
-  #  main:
-  #    allow-bean-definition-overriding: true
 
   mvc:
     hiddenmethod:
@@ -24,18 +22,10 @@ spring:
           facebook:
             client-id: ---
             client-secret: ---
-            scope:
-              - email
-              - public_profile
-  #  sql:
-  #    init:
-  #      mode: always
+
   jpa:
-    # Choose either MySQL 8 or MySQL 5 below
-    # For MySQL 8
-    database-platform: org.hibernate.dialect.MySQL8Dialect
-    #For MySQL 5
-    #database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+
     hibernate:
       ddl-auto: update
     open-in-view: false
@@ -61,3 +51,6 @@ mail:
   port: 1025
   username: "mobilele@mobilele.com"
   password: ""
+
+  server:
+    port: ${PORT:8080}
