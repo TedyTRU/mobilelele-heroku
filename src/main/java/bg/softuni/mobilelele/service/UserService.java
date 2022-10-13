@@ -93,7 +93,7 @@ public class UserService {
                         .setEmail("example@example.com")
                         .setFirstName("example")
                         .setLastName("exampalov")
-                        .setActive(false)
+                        .setActive(true)
                         .setPassword(passwordEncoder.encode("topsecret"))
                         .setRole(List.of(userRoleRepository.getById(1L)))
                 );
