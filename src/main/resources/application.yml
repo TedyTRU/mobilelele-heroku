@@ -20,8 +20,8 @@ spring:
       client:
         registration:
           facebook:
-            client-id: ---
-            client-secret: ---
+            client-id: ${FB_CLIENT_ID}
+            client-secret: ${FB_CLIENT_SECRET}
 
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
