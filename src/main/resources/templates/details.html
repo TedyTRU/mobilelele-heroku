@@ -41,12 +41,16 @@
             </ul>
             <div class="card-body">
 
-                <a class="card-link" th:href="@{/offers/{id}/edit(id=*{id})}">Update</a>
+                <form th:method="GET"
+                      th:action="@{/offers/{id}/edit(id=*{id})}">
+                    <input type="submit" value="Update">
+                </form>
+
                 <form th:method="DELETE"
                       th:action="@{/offers/{id}(id=*{id})}" >
                     <input type="submit" value="Delete">
                 </form>
-<!--                <a class="card-link" th:href="@{/}">Delete</a>-->
+
             </div>
         </div>
         <div class="offer card col-sm-2 col-md-3  col-lg-4 m-1 p-0">
