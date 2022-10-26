@@ -25,7 +25,7 @@
             th:method="POST"
             th:object="${addOfferModel}"
             class="main-form mx-auto col-md-8 d-flex flex-column justify-content-center"
-            th:action="@{/offers/edit}">
+            th:action="@{/offers/{id}/edit(id=*{id})}">
 
         <div class="row">
 
@@ -44,8 +44,7 @@
                                 th:each="model : ${brand.models}"
                                 th:text="${model.name}"
                                 th:value="${model.id}"
-                                th:selected="*{modelId} == ${model.id}"
-                        >Model
+                                th:selected="*{modelId} == ${model.id}">Model
                         </option>
                     </optgroup>
                 </select>

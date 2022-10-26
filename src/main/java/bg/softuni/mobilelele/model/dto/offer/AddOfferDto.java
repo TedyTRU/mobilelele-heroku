@@ -7,6 +7,7 @@ import javax.validation.constraints.*;
 
 public class AddOfferDto {
 
+    private Long id;
     private Long modelId;
     private EngineEnum engine;
     private String imageUrl;
@@ -15,6 +16,16 @@ public class AddOfferDto {
     private Integer year;
     private String description;
     private Integer mileage;
+
+
+    public Long getId() {
+        return id;
+    }
+
+    public AddOfferDto setId(Long id) {
+        this.id = id;
+        return this;
+    }
 
     @NotNull
     public EngineEnum getEngine() {

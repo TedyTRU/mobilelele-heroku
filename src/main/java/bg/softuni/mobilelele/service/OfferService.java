@@ -75,6 +75,34 @@ public class OfferService {
         offerRepository.save(newOffer);
     }
 
+    public void editOffer(AddOfferDto addOfferDto, UserDetails userDetails) {
+
+        Offer updateOffer = offerRepository.findById(addOfferDto.getId())
+                .orElseThrow();
+
+        updateOffer
+                .setDescription(addOfferDto.getDescription())
+                .setEngine(addOfferDto.getEngine())
+                .setImageUrl(addOfferDto.getImageUrl())
+                .setMileage(addOfferDto.getMileage())
+                .setPrice(BigDecimal.valueOf(addOfferDto.getPrice()))
+                .setTransmission(addOfferDto.getTransmission())
+                .setYear(addOfferDto.getYear());
+
+        User seller = userRepository
+                .findByEmail(userDetails.getUsername())
+                .orElseThrow();
+
+        Model model = modelRepository
+                .findById(addOfferDto.getModelId())
+                .orElseThrow();
+
+        updateOffer.setModel(model);
+        updateOffer.setSeller(seller);
+
+        offerRepository.save(updateOffer);
+    }
+
     public void initOffers() {
 
         if (offerRepository.count() != 0) {

@@ -108,16 +108,6 @@ public class OfferController {
         return "details";
     }
 
-//    @PreAuthorize("@offerService.isOwner(#principal.name, #id)")
-//    @DeleteMapping("/{id}")
-//    public String deleteOffer(Principal principal,
-//                              @PathVariable("id") Long id) {
-//
-//        offerService.deleteOfferById(id);
-//
-//        return "redirect:all";
-//    }
-
     @PreAuthorize("isOwner(#id)")
     @DeleteMapping("/{id}")
     public String deleteOffer(@PathVariable("id") Long id) {
@@ -139,6 +129,28 @@ public class OfferController {
         model.addAttribute("brands", brandService.getAllBrands());
 
         return "update";
+    }
+
+    @PostMapping("/{id}/edit")
+    public String updateOffer(
+            @PathVariable("id") Long id,
+            @Valid AddOfferDto addOfferModel,
+            BindingResult bindingResult,
+            RedirectAttributes redirectAttributes,
+            @AuthenticationPrincipal UserDetails userDetails) {
+
+        addOfferModel.setId(id);
+
+        if (bindingResult.hasErrors()) {
+            redirectAttributes.addFlashAttribute("addOfferModel", addOfferModel);
+            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.addOfferModel", bindingResult);
+
+            return "redirect:edit";
+        }
+
+        offerService.editOffer(addOfferModel, userDetails);
+
+        return "redirect:/offers/all";
     }
 
 }
